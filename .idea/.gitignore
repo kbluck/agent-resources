@@ -1,0 +1,33 @@
+####################################################################################################################################
+# A .gitignore file specifies intentionally untracked files that Git shouldn't track by default. Each line in a .gitignore file    #
+# specifies a pseudo-regex pattern. Any file with path and name matching the pattern is not tracked by default, although you can   #
+# still manually add and track ignored files.                                                                                      #
+#                                                                                                                                  #
+# Full documentation about .gitignore: https://git-scm.com/docs/gitignore                                                          #
+#                                                                                                                                  #
+# Copyright © 2026 Maneuver Games LLC. All rights reserved.                                                                        #
+####################################################################################################################################
+
+# Covers JetBrains IDEs: CLion, DataGrip, GoLand, IntelliJ, PhpStorm, PyCharm, Rider, RubyMine, and WebStorm.
+# https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+# https://github.com/github/gitignore/blob/main/Dotnet.gitignore
+# Workspace config delegated here from root.
+
+# User-specific files
+**/aws.xml
+**/shelf/
+**/tasks.xml
+**/usage.statistics.xml
+
+# Sensitive or high-churn files
+**/contentModel.xml
+**/dataSources/
+**/dataSources.ids
+**/dataSources.local.xml
+**/dbnavigator.xml
+**/dynamic.xml
+**/httpRequests/
+**/projectSettingsUpdater.xml
+**/sqlDataSources.xml
+**/uiDesigner.xml
+**/workspace.xml
