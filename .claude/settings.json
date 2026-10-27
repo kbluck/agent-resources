@@ -1,0 +1,55 @@
+{
+  "model":        "opus",
+  "advisorModel": "fable",
+  "effortLevel":  "high",
+  "outputStyle":  "Concise",
+
+  "autoMemoryEnabled": false,
+  "plansDirectory":    "./.claude/plans",
+
+  "env": {
+    "CLAUDE_CODE_ENABLE_AUTO_MODE": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL":   "claude-sonnet-5",
+    "ENABLE_LSP_TOOL":              "1",
+    "ENABLE_TOOL_SEARCH":           "auto"
+  },
+
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": [
+    "agent-skills"
+  ],
+
+  "extraKnownMarketplaces": {
+  },
+  "enabledPlugins": {
+  },
+
+  "askUserQuestionTimeout": "never",
+  "attribution":            { "commit": "", "pr": "", "sessionUrl": false },
+  "availableModels":        [ "haiku", "sonnet", "opus", "fable" ],
+  "workflowSizeGuideline":  "small",
+  "worktree":               { "baseRef": "head" },
+
+  "agentPushNotifEnabled":   true,
+  "alwaysThinkingEnabled":   true,
+  "autoCompactEnabled":      true,
+  "autoScrollEnabled":       true,
+  "awaySummaryEnabled":      true,
+  "idleCompaction":          true,
+  "inputNeededNotifEnabled": true,
+  "remoteControlAtStartup":  true,
+  "respectGitignore":        true,
+  "showTurnDuration":        true,
+  "spinnerTipsEnabled":      false,
+  "useAutoModeDuringPlan":   true,
+  "workflows":               true,
+
+  "hooks": {},
+
+  "permissions": {
+    "additionalDirectories": [],
+    "allow": [],
+    "ask":   [],
+    "deny":  []
+  }
+}
