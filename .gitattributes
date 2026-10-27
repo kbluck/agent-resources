@@ -1,0 +1,72 @@
+####################################################################################################################################
+# Defines attributes for pathnames in a Git repo. Each line in the file consists of a pattern followed by a list of attributes,    #
+# separated by space. These attributes can control various aspects of how Git handles files, such as end-of-line normalization,    #
+# diff generation, and merge behavior.                                                                                             #
+#                                                                                                                                  #
+# Binaries and project creative assets should should never be treated as text and should use Git Large File System (LFS).          #
+#                                                                                                                                  #
+# Full documentation about gitattributes: https://git-scm.com/docs/gitattributes                                                   #
+#                                                                                                                                  #
+# Github Linguist includes its own extension grammar for .gitattributes files to render content on GitHub. Attributes include:     #
+#   `linguist-detectable`     Included in stats, even if language's type is data or prose                                          #
+#   `linguist-documentation`  Excluded from stats                                                                                  #
+#   `linguist-generated`      Excluded from stats, hidden in diffs                                                                 #
+#   `linguist-language=name`  Highlighted and classified as name                                                                   #
+#   `linguist-vendored`       Excluded from stats                                                                                  #
+#                                                                                                                                  #
+# The Github Linguist project: https://github.com/github-linguist                                                                  #
+#                                                                                                                                  #
+# Note that all file names and extensions are written in a case-insensitive manner.                                                #
+#                                                                                                                                  #
+# Reminder of line ending conventions:                                                                                             #
+# Linux and modern MacOS:  LF   "\n"   [ASCII code 10]                                                                             #
+# Windows:                 CRLF "\r\n" [ASCII codes 13 + 10]                                                                       #
+# Classic MacOS: (Rare)    CR   "\r"   [ASCII code 13]                                                                             #
+#                                                                                                                                  #
+# Copyright © 2026 Maneuver Games LLC. All rights reserved.                                                                        #
+####################################################################################################################################
+
+# Set default behavior to normalize general text file line endings to LF.
+* text=auto eol=lf
+
+
+####################################################################################################################################
+#                                                  Miscellaneous File Attributes                                                   #
+####################################################################################################################################
+
+# Set specific behavior for common file types.
+*.[mM][dD]               text linguist-language=markdown diff=markdown
+*.[cC][sS][vV]           text linguist-language=csv
+*.[jJ][sS][oO][nN]       text linguist-language=json
+*.[tT][oO][mM][lL]       text linguist-language=toml
+*.[yY][aA][mM][lL]       text linguist-language=yaml
+*.[yY][mM][lL]           text linguist-language=yaml
+
+# Force Linux/MacOS shell scripts to always use LF line endings. Redundant with default text handling, but worthwhile so that if
+# a repo is accessed in Linux or Mac via a file share from Windows, the scripts should still work.
+*.[Bb][Aa][Ss][Hh]       text eol=lf diff=bash linguist-language=bash
+*.[Ff][Ii][Ss][Hh]       text eol=lf diff=bash linguist-language=fish
+*.[Kk][Ss][Hh]           text eol=lf diff=bash linguist-language=shell
+*.[Ss][Hh]               text eol=lf diff=bash linguist-language=shell
+*.[Zz][Ss][Hh]           text eol=lf diff=bash linguist-language=zsh
+
+# Set Windows batch/command scripts to always use CRLF line endings.
+*.[cC][mM][dD]          text eol=crlf linguist-language=batchfile
+*.[bB][aA][tT]          text eol=crlf linguist-language=batchfile
+
+# Set Windows Powershell scripts to always use CRLF line endings.
+*.[pP][sS]1             text eol=crlf linguist-language=powershell
+*.[pP][sS][mM]1         text eol=crlf linguist-language=powershell
+*.[pP][sS][dD]1         text eol=crlf linguist-language=powershell
+*.[pP][sS]1[xX][mM][lL] text eol=crlf linguist-language=xml
+*.[pP][sS][sS][cC]      text eol=crlf linguist-vendored
+*.[pP][sS][rR][cC]      text eol=crlf linguist-vendored
+*.[cC][dD][xX][mM][lL]  text eol=crlf linguist-language=xml
+
+# Patch files should preserve existing line endings
+*.[Pp][Aa][Tt][Cc][Hh] -text linguist-vendored
+
+# Exclude properties files from exporting in source code archives.
+.[eE][dD][iI][tT][oO][rR][cC][oO][nN][fF][iI][gG]     text export-ignore linguist-language=editorconfig
+.[gG][iI][tT][aA][tT][tT][rR][iI][bB][uU][tT][eE][sS] text export-ignore linguist-language=gitattributes
+.[gG][iI][tT][iI][gG][nN][oO][rR][eE]                 text export-ignore linguist-language=gitignore
