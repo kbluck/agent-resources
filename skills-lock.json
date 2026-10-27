@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "skills": {
+    "commit-message-storyteller": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/commit-message-storyteller/SKILL.md",
+      "computedHash": "a226e31403249b54837403d0ee528c9603bf03139b0f8860f55a95f4bec154ce"
+    },
+    "conventional-branch": {
+      "source": "conventional-branch/conventional-branch",
+      "sourceType": "github",
+      "skillPath": "skills/conventional-branch/SKILL.md",
+      "computedHash": "fb53f23ccd7f6985b01a2032837f9e794e307e84bbf7988b386b3545402ac334"
+    },
+    "create-agentsmd": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/create-agentsmd/SKILL.md",
+      "computedHash": "bfbdbb76b17cca970d1d624e36ce72b6847860d740581c8865da796c1fef8552"
+    },
+    "create-implementation-plan": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/create-implementation-plan/SKILL.md",
+      "computedHash": "5c282fded01e40a7db621b0690513f62d179b600e0a271751e82cb0c9e1bcafc"
+    },
+    "create-readme": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/create-readme/SKILL.md",
+      "computedHash": "d0ece1b2164ce1376e4ab6e98d6ac079df3a2a94f5f02224362b6a1ce2516ae9"
+    },
+    "create-specification": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/create-specification/SKILL.md",
+      "computedHash": "9796c1d33858522eb67ea2fa864993bdad11f5d79832cca9cf64b9a47c610c09"
+    },
+    "em-dash": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/em-dash/SKILL.md",
+      "computedHash": "c9de78fafa93e3a3994e440b291e656fd6b4f1c0c26b083943a0d2a84c3d5968"
+    },
+    "git-commit": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "computedHash": "78b6a33700091345cd449f9e3642ddd611b479b341efc9d6c750f7e04d15216a"
+    },
+    "lean-comments": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/lean-comments/SKILL.md",
+      "computedHash": "72f0c28637135992ecb233848edb0f85f9b7bbd39ecd67bcfc8fe000c91e9c91"
+    },
+    "rebase-current-branch": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/rebase-current-branch/SKILL.md",
+      "computedHash": "c98e899ed0f90505189df8e3551abeaa1d603a876f8a1bd6b80a06686bfdbf0f"
+    },
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
+    }
+  }
+}
