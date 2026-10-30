@@ -1,0 +1,5 @@
+{
+  "name": "kbluck-agent-resources",
+  "interface": { "displayName": "Agent Resources plugins" },
+  "plugins": []
+}

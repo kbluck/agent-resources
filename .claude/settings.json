@@ -20,6 +20,7 @@
   ],
 
   "extraKnownMarketplaces": {
+    "kbluck-agent-resources": { "source": { "source": "github", "repo": "kbluck/agent-resources" }}
   },
   "enabledPlugins": {
   },

@@ -1,0 +1,9 @@
+{
+  "name": "kbluck-agent-resources",
+  "owner": { "name": "Kevin J. Bluck" },
+  "metadata": {
+    "description": "Agent Resources plugins.",
+    "version": "1.0.0"
+  },
+  "plugins": []
+}
