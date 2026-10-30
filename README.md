@@ -25,7 +25,7 @@ Each plugin bundles a pair of skills designed to work together.
 ## Installation
 
 Every harness below installs from the same marketplace, `kbluck-agent-resources`. Add it once, then install the plugins you want by
-name.
+name. The examples install `git`.
 
 ### Claude Code
 
@@ -113,6 +113,8 @@ new skills, are listed in `skills-lock.json` and installed into `.agents/skills/
 
 ```text
 plugins/
+└── git/
+    └── skills/
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:

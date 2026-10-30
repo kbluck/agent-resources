@@ -1,0 +1,12 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "git",
+  "displayName": "git",
+  "version": "1.1.0",
+  "description": "Git branches and commits that follow Conventional Branch and Conventional Commits.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/git",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "git", "conventional-commits", "conventional-branch", "skills" ]
+}

@@ -2,8 +2,15 @@
   "name": "kbluck-agent-resources",
   "owner": { "name": "Kevin J. Bluck" },
   "metadata": {
-    "description": "Agent Resources plugins.",
+    "description": "Agent Resources plugins: git.",
     "version": "1.0.0"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "git",
+      "source": "./plugins/git",
+      "version": "1.1.0",
+      "description": "Git branches and commits that follow Conventional Branch and Conventional Commits."
+    }
+  ]
 }
