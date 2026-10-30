@@ -1,0 +1,5 @@
+{
+  "name": "git",
+  "version": "1.1.0",
+  "description": "Git branches and commits that follow Conventional Branch and Conventional Commits."
+}

@@ -1,5 +1,12 @@
 {
   "name": "kbluck-agent-resources",
   "interface": { "displayName": "Agent Resources plugins" },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "git",
+      "source": { "source": "local", "path": "./plugins/git" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Developer Tools"
+    }
+  ]
 }
