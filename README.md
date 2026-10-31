@@ -32,7 +32,7 @@ In each pair, one skill does the work and the other keeps it tidy: `branch` gets
 ## Installation
 
 Every harness below installs from the same marketplace, `kbluck-agent-resources`. Add it once, then install the plugins you want by
-name. The examples install `git`.
+name. The examples install `git`; repeat the install for `markdown`.
 
 ### Claude Code
 
@@ -141,10 +141,12 @@ new skills, are listed in `skills-lock.json` and installed into `.agents/skills/
 
 ```text
 plugins/
-└── git/
+├── git/
+│   └── skills/
+│       ├── branch/        # Conventional Branch spec, examples, check_branch.py and its tests
+│       └── commit/        # Conventional Commits spec, examples, splitting guide
+└── markdown/
     └── skills/
-        ├── branch/        # Conventional Branch spec, examples, check_branch.py and its tests
-        └── commit/        # Conventional Commits spec, examples, splitting guide
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:
