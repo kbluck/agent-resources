@@ -20,7 +20,10 @@ Each plugin bundles a pair of skills designed to work together.
 
 | Plugin | Skill | What it does | Requires |
 | :----- | :---- | :----------- | :------- |
-| `git` | [`commit`](plugins/git/skills/commit/SKILL.md) | Inspects the diff, groups changes into right-sized commits, and writes [Conventional Commits](https://www.conventionalcommits.org) messages that explain why | Git |
+| `git` | [`branch`](plugins/git/skills/branch/SKILL.md) | Names, creates, checks, and renames branches following [Conventional Branch](https://conventionalbranch.org), without losing uncommitted work | Git 2.23+; Python 3 for the optional checker script |
+| | [`commit`](plugins/git/skills/commit/SKILL.md) | Inspects the diff, groups changes into right-sized commits, and writes [Conventional Commits](https://www.conventionalcommits.org) messages that explain why | Git |
+
+In each pair, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits it.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -91,7 +94,7 @@ bunx skills add kbluck/agent-resources
 bunx skills add kbluck/agent-resources --all
 
 # Specific skills only
-bunx skills add kbluck/agent-resources --skill commit
+bunx skills add kbluck/agent-resources --skill branch --skill commit
 
 # User-level install, available in all projects
 bunx skills add kbluck/agent-resources --global
@@ -113,10 +116,21 @@ would:
 
 | You say | Skill that loads |
 | :------ | :--------------- |
+| "Start a branch for the OAuth login work" | `branch` |
 | "Commit this", or "split these changes into separate commits" | `commit` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
 installed with the `skills` CLI are not, such as `/commit`.
+
+The `branch` skill's checker script also works on its own, for example in a CI step or Git hook:
+
+```bash
+python3 plugins/git/skills/branch/scripts/check_branch.py # current branch
+python3 plugins/git/skills/branch/scripts/check_branch.py feature/add-login bad_name
+python3 plugins/git/skills/branch/scripts/check_branch.py --allow-type docs docs/update-readme
+```
+
+It exits `0` when every name conforms, `1` when any does not (with the reason), and `2` on a usage or Git error.
 
 ## Development
 
@@ -129,6 +143,7 @@ new skills, are listed in `skills-lock.json` and installed into `.agents/skills/
 plugins/
 └── git/
     └── skills/
+        ├── branch/        # Conventional Branch spec, examples, check_branch.py and its tests
         └── commit/        # Conventional Commits spec, examples, splitting guide
 ```
 
@@ -137,6 +152,7 @@ Restore the development skills, run the tests, validate the plugins, and lint th
 ```bash
 bunx skills experimental_install
 python3 -m unittest discover -s tests
+python3 -m unittest discover -s plugins/git/skills/branch/scripts
 claude plugin validate .
 uvx rumdl check .
 ```
