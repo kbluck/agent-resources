@@ -18,6 +18,10 @@ one. They were written for my own projects, but anyone who finds them useful is 
 
 Each plugin bundles a pair of skills designed to work together.
 
+| Plugin | Skill | What it does | Requires |
+| :----- | :---- | :----------- | :------- |
+| `git` | [`commit`](plugins/git/skills/commit/SKILL.md) | Inspects the diff, groups changes into right-sized commits, and writes [Conventional Commits](https://www.conventionalcommits.org) messages that explain why | Git |
+
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
 > over the skill's defaults.
@@ -86,6 +90,9 @@ bunx skills add kbluck/agent-resources
 # Every skill for every detected agent, no prompts
 bunx skills add kbluck/agent-resources --all
 
+# Specific skills only
+bunx skills add kbluck/agent-resources --skill commit
+
 # User-level install, available in all projects
 bunx skills add kbluck/agent-resources --global
 
@@ -102,7 +109,14 @@ Keep them current with `bunx skills update`.
 ## Usage
 
 Skills load on their own when a request matches their description, so there is nothing to call explicitly. Ask the way you normally
-would.
+would:
+
+| You say | Skill that loads |
+| :------ | :--------------- |
+| "Commit this", or "split these changes into separate commits" | `commit` |
+
+In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
+installed with the `skills` CLI are not, such as `/commit`.
 
 ## Development
 
@@ -115,6 +129,7 @@ new skills, are listed in `skills-lock.json` and installed into `.agents/skills/
 plugins/
 └── git/
     └── skills/
+        └── commit/        # Conventional Commits spec, examples, splitting guide
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:
