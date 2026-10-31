@@ -42,9 +42,9 @@ exclude = [
 respect-gitignore = true
 
 # Rule-specific configurations. Every rule in rumdl 0.3.2 is listed with every option that has a default. MD013 and MD060 follow the
-# markdown-formatting skill's fallback (skills/markdown-formatting/assets/rumdl.toml); all other values are rumdl's defaults, so
-# those rules behave exactly as if they were left out under the "gfm" flavor. Options whose default is unset are omitted, since TOML
-# cannot express "unset". When setting a default value changes behavior, the line stays commented out.
+# formatting skill's fallback (plugins/markdown/skills/formatting/assets/rumdl.toml); all other values are rumdl's
+# defaults, so those rules behave exactly as if they were left out under the "gfm" flavor. Options whose default is unset are
+# omitted, since TOML cannot express "unset". When setting a default value changes behavior, the line stays commented out.
 
 # MD001 heading-increment: Heading levels should only increment by one level at a time
 [MD001]
