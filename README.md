@@ -22,9 +22,11 @@ Each plugin bundles a pair of skills designed to work together.
 | :----- | :---- | :----------- | :------- |
 | `git` | [`branch`](plugins/git/skills/branch/SKILL.md) | Names, creates, checks, and renames branches following [Conventional Branch](https://conventionalbranch.org), without losing uncommitted work | Git 2.23+; Python 3 for the optional checker script |
 | | [`commit`](plugins/git/skills/commit/SKILL.md) | Inspects the diff, groups changes into right-sized commits, and writes [Conventional Commits](https://www.conventionalcommits.org) messages that explain why | Git |
-| `markdown` | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
+| `markdown` | [`authoring`](plugins/markdown/skills/authoring/SKILL.md) | Decides what each piece of a document becomes: table, GitHub alert, code block, Mermaid or ASCII diagram, or prose | |
+| | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
 
-In each pair, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits it.
+In each pair, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits it;
+`authoring` shapes the document and `formatting` lints it.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -119,6 +121,7 @@ would:
 | :------ | :--------------- |
 | "Start a branch for the OAuth login work" | `branch` |
 | "Commit this", or "split these changes into separate commits" | `commit` |
+| "Write a README for this project" | `authoring`, then `formatting` |
 | "rumdl is failing on the docs folder" | `formatting` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
@@ -149,6 +152,7 @@ plugins/
 │       └── commit/        # Conventional Commits spec, examples, splitting guide
 └── markdown/
     └── skills/
+        ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
         └── formatting/    # Default rumdl.toml, rule notes, tool setup
 ```
 
