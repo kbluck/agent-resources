@@ -23,7 +23,8 @@
     "kbluck-agent-resources": { "source": { "source": "github", "repo": "kbluck/agent-resources" }}
   },
   "enabledPlugins": {
-    "git@kbluck-agent-resources": true
+    "git@kbluck-agent-resources":      true,
+    "markdown@kbluck-agent-resources": true
   },
 
   "askUserQuestionTimeout": "never",

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "markdown",
+  "version": "1.1.0",
+  "description": "Markdown documents that are easy to read and lint-clean.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/markdown",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "markdown", "documentation", "rumdl", "skills" ]
+}

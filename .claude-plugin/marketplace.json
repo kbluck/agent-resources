@@ -2,7 +2,7 @@
   "name": "kbluck-agent-resources",
   "owner": { "name": "Kevin J. Bluck" },
   "metadata": {
-    "description": "Agent Resources plugins: git.",
+    "description": "Agent Resources plugins: git and markdown.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -10,6 +10,11 @@
       "name": "git",
       "source": "./plugins/git",
       "description": "Git branches and commits that follow Conventional Branch and Conventional Commits."
+    },
+    {
+      "name": "markdown",
+      "source": "./plugins/markdown",
+      "description": "Markdown documents that are easy to read and lint-clean."
     }
   ]
 }
