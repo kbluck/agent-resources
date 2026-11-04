@@ -35,7 +35,7 @@ In each pair, one skill does the work and the other keeps it tidy: `branch` gets
 ## Installation
 
 Every harness below installs from the same marketplace, `kbluck-agent-resources`. Add it once, then install the plugins you want by
-name. The examples install `git`; repeat the install for `markdown`.
+name. The examples install `git`; repeat the install for `markdown` and `pyrefly`.
 
 ### Claude Code
 
@@ -150,10 +150,12 @@ plugins/
 │   └── skills/
 │       ├── branch/        # Conventional Branch spec, examples, check_branch.py and its tests
 │       └── commit/        # Conventional Commits spec, examples, splitting guide
-└── markdown/
+├── markdown/
+│   └── skills/
+│       ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
+│       └── formatting/    # Default rumdl.toml, rule notes, tool setup
+└── pyrefly/
     └── skills/
-        ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
-        └── formatting/    # Default rumdl.toml, rule notes, tool setup
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:

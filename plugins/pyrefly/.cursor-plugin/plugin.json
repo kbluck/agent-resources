@@ -1,0 +1,11 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "pyrefly",
+  "version": "1.1.0",
+  "description": "Python type checking and type coverage with Pyrefly.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/pyrefly",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "python", "pyrefly", "type-checking", "skills" ]
+}
