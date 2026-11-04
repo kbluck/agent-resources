@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/codex-plugin-manifest.json",
+  "name": "pyrefly",
+  "version": "1.1.0",
+  "description": "Python type checking and type coverage with Pyrefly.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/pyrefly",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "python", "pyrefly", "type-checking", "skills" ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "pyrefly",
+    "shortDescription": "Python type checking and type coverage with Pyrefly.",
+    "developerName": "Kevin J. Bluck",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/kbluck/agent-resources/tree/main/plugins/pyrefly"
+  }
+}

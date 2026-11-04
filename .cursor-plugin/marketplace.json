@@ -2,7 +2,7 @@
   "name": "kbluck-agent-resources",
   "owner": { "name": "Kevin J. Bluck" },
   "metadata": {
-    "description": "Agent Resources plugins: git and markdown.",
+    "description": "Agent Resources plugins: git, markdown, and pyrefly.",
     "version": "1.0.0",
     "pluginRoot": "plugins"
   },
@@ -16,6 +16,11 @@
       "name": "markdown",
       "source": "markdown",
       "description": "Markdown documents that are easy to read and lint-clean."
+    },
+    {
+      "name": "pyrefly",
+      "source": "pyrefly",
+      "description": "Python type checking and type coverage with Pyrefly."
     }
   ]
 }
