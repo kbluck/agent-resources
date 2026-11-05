@@ -5,7 +5,8 @@
 [![Agent Plugins](https://img.shields.io/badge/format-Agent%20Plugins-8A2BE2)](https://agent-plugins.org)
 
 Portable [Agent Skills](https://agentskills.io) for Claude Code and other coding agents: Git branches and commits that follow the
-conventions, Markdown that is easy to read and lint-clean, and Python type checking and type coverage with Pyrefly.
+conventions, Markdown that is easy to read and lint-clean, Python type checking and type coverage with Pyrefly, and
+language-agnostic testing practice.
 
 [Plugins](#plugins) • [Installation](#installation) • [Usage](#usage) • [Development](#development)
 
@@ -16,7 +17,7 @@ one. They were written for my own projects, but anyone who finds them useful is 
 
 ## Plugins
 
-Each plugin bundles a pair of skills designed to work together.
+Each plugin bundles skills designed to work together.
 
 | Plugin | Skill | What it does | Requires |
 | :----- | :---- | :----------- | :------- |
@@ -26,10 +27,11 @@ Each plugin bundles a pair of skills designed to work together.
 | | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
+| `software-testing` | [`best-practices`](plugins/software-testing/skills/best-practices/SKILL.md) | Writes tests that fail when behavior breaks: the right level, clear structure, isolation, and careful use of test doubles | The project's test runner |
 
-In each pair, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits it;
-`authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type errors in
-code as it is annotated now.
+In the first three plugins, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits
+it; `authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type
+errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -128,6 +130,7 @@ would:
 | "rumdl is failing on the docs folder" | `formatting` |
 | "CI's pyrefly step is red after my refactor" | `type-checking` |
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
+| "Add tests for the discount calculator" | `best-practices` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
 installed with the `skills` CLI are not, such as `/commit`.
@@ -165,6 +168,7 @@ plugins/
 │       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
 └── software-testing/
     └── skills/
+        └── best-practices/                 # Anti-pattern examples, test doubles in six languages
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:
