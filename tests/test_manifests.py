@@ -103,6 +103,14 @@ class PluginManifestTests(unittest.TestCase):
                 for skill in skills:
                     self.assertEqual(frontmatter_name(skill), skill.parent.name, f"{skill}: frontmatter name mismatch")
 
+    def test_standalone_skills_are_named_after_their_folders_and_unique(self):
+        # Root skills/ holds skills installed one by one with the skills CLI, which installs them unnamespaced next to plugin skills.
+        plugin_skills = {s.parent.name for p in plugin_dirs() for s in (p / "skills").glob("*/SKILL.md")}
+        for skill in sorted((ROOT / "skills").glob("*/SKILL.md")):
+            with self.subTest(skill=skill.parent.name):
+                self.assertEqual(frontmatter_name(skill), skill.parent.name, f"{skill}: frontmatter name mismatch")
+                self.assertNotIn(skill.parent.name, plugin_skills, "a plugin already ships a skill with this name")
+
     def test_skill_names_do_not_repeat_the_plugin_name(self):
         # Harnesses namespace plugin skills by plugin, so git/skills/branch is already seen as git:branch.
         for plugin in plugin_dirs():

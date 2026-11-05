@@ -32,6 +32,8 @@ component without breaking discovery anywhere.
 │       ├── gemini-extension.json      # Gemini CLI extension
 │       └── skills/
 │           └── <skill>/SKILL.md       # Shared by every harness
+├── skills/
+│   └── <skill>/SKILL.md               # Setup skill, in no plugin; installed with the skills CLI
 └── tests/test_manifests.py            # Keeps all of the above in agreement
 ```
 
@@ -68,6 +70,14 @@ Gemini CLI has no marketplace. Users install each plugin from a local clone, or 
 > `.agents/skills/` and `.claude/skills/` hold the skills this repository uses on itself (see `skills-lock.json`). They are
 > gitignored and never ship in a plugin. The root `.mcp.json` is the same: it configures this repository's own sessions and is
 > outside every plugin root.
+
+### Setup Skills
+
+A skill that is used once per project, such as one that configures a tool, goes in the root `skills/` folder instead of a plugin. A
+plugin would keep its description loaded in every session long after the setup is done. Users install it with
+`bunx skills add kbluck/agent-resources --skill <skill>` when a project needs it, and it then loads on its own or runs as a command
+such as `/pytest-setup`. The `skills` CLI finds these and the plugin skills alike, and installs both without a plugin namespace, so
+a setup skill must not share a name with any plugin skill; the manifest test checks this.
 
 ## Adding a Plugin
 

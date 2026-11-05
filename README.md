@@ -8,12 +8,13 @@ Portable [Agent Skills](https://agentskills.io) for Claude Code and other coding
 conventions, Markdown that is easy to read and lint-clean, Python type checking and type coverage with Pyrefly, and
 language-agnostic testing practice.
 
-[Plugins](#plugins) • [Installation](#installation) • [Usage](#usage) • [Development](#development)
+[Plugins](#plugins) • [Setup Skills](#setup-skills) • [Installation](#installation) • [Usage](#usage) • [Development](#development)
 
 Each skill is a folder with a `SKILL.md` file and, where useful, reference material and scripts that the agent loads only when it
 needs them. Related skills are bundled into plugins, and the repository is a plugin marketplace that Claude Code, GitHub Copilot,
 Codex, Cursor, and Gemini CLI can install from. Any other agent that supports the Agent Skills format can install the skills one by
-one. They were written for my own projects, but anyone who finds them useful is welcome to them.
+one. A few setup skills, needed once per project, are not in any plugin and are installed one by one when needed. They were written
+for my own projects, but anyone who finds them useful is welcome to them.
 
 ## Plugins
 
@@ -45,6 +46,20 @@ guards dangerous paths once a bug is fixed.
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
 > over the skill's defaults.
+
+## Setup Skills
+
+These skills configure a tool once per project, so they are not in any plugin; a plugin would keep loading them in every session
+long after the setup is done. Install one with the [`skills`](#any-other-agent) CLI when a project needs it. Once installed, it
+loads on its own like any other skill, and you can also run it as a command, such as `/pytest-setup`.
+
+| Skill | What it does | Pairs with | Requires |
+| :---- | :----------- | :--------- | :------- |
+| [`pytest-setup`](skills/pytest-setup/SKILL.md) | Configures [pytest](https://docs.pytest.org) in one strict `[tool.pytest]` table, with warnings as errors, the right plugins, and unittest migration | `python-testing` | pytest 9 (8 with fallbacks) |
+
+```bash
+bunx skills add kbluck/agent-resources --skill pytest-setup
+```
 
 ## Installation
 
@@ -139,6 +154,7 @@ would:
 | "rumdl is failing on the docs folder" | `formatting` |
 | "CI's pyrefly step is red after my refactor" | `type-checking` |
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
+| "Set up pytest for this project", or "move us off unittest" | `pytest-setup` |
 | "Write pytest tests for the config loader" | `pytest-writing` |
 | "This test passes alone but fails in the full suite" | `pytest-triage` |
 | "Coverage is below the gate, get us over it" | `coverage-gaps` |
@@ -147,7 +163,7 @@ would:
 | "This test passes locally but fails in CI about one run in ten" | `condition-based-waiting` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
-installed with the `skills` CLI are not, such as `/commit`.
+installed with the `skills` CLI are not, such as `/commit` or `/pytest-setup`.
 
 The `branch` skill's checker script also works on its own, for example in a CI step or Git hook:
 
@@ -162,11 +178,14 @@ It exits `0` when every name conforms, `1` when any does not (with the reason), 
 ## Development
 
 Each plugin lives in `plugins/`, with its skills in `skills/` and one small manifest per harness. The marketplace files at the root
-list every plugin. [Plugin layout](docs/plugins.md) explains which harness reads which file, how to add a plugin, and where hooks,
-MCP servers, and LSP servers go. The skills this repository uses on itself, including `skill-creator` for building and evaluating
-new skills, are listed in `skills-lock.json` and installed into `.agents/skills/`.
+list every plugin. The setup skills live in the root `skills/` folder, outside every plugin. [Plugin layout](docs/plugins.md)
+explains which harness reads which file, how to add a plugin, and where hooks, MCP servers, and LSP servers go. The skills this
+repository uses on itself, including `skill-creator` for building and evaluating new skills, are listed in `skills-lock.json` and
+installed into `.agents/skills/`.
 
 ```text
+skills/
+└── pytest-setup/
 plugins/
 ├── git/
 │   └── skills/
