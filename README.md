@@ -56,9 +56,10 @@ loads on its own like any other skill, and you can also run it as a command, suc
 | Skill | What it does | Pairs with | Requires |
 | :---- | :----------- | :--------- | :------- |
 | [`pytest-setup`](skills/pytest-setup/SKILL.md) | Configures [pytest](https://docs.pytest.org) in one strict `[tool.pytest]` table, with warnings as errors, the right plugins, and unittest migration | `python-testing` | pytest 9 (8 with fallbacks) |
+| [`coverage-config`](skills/coverage-config/SKILL.md) | Sets up [Coverage.py](https://coverage.readthedocs.io) with branch, subprocess, and xdist measurement, combines a CI matrix, and gates on the measured total | `python-testing` | Coverage.py 7.10+ |
 
 ```bash
-bunx skills add kbluck/agent-resources --skill pytest-setup
+bunx skills add kbluck/agent-resources --skill pytest-setup --skill coverage-config
 ```
 
 ## Installation
@@ -157,6 +158,7 @@ would:
 | "Set up pytest for this project", or "move us off unittest" | `pytest-setup` |
 | "Write pytest tests for the config loader" | `pytest-writing` |
 | "This test passes alone but fails in the full suite" | `pytest-triage` |
+| "Add coverage to CI and fail the build if it drops" | `coverage-config` |
 | "Coverage is below the gate, get us over it" | `coverage-gaps` |
 | "Add tests for the discount calculator" | `best-practices` |
 | "Implement the rate limiter, test-first" | `test-driven-development` |
@@ -185,6 +187,7 @@ installed into `.agents/skills/`.
 
 ```text
 skills/
+├── coverage-config/                    # CI combine workflows for GitHub Actions, tox, and nox
 └── pytest-setup/
 plugins/
 ├── git/
