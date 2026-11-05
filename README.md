@@ -28,10 +28,12 @@ Each plugin bundles skills designed to work together.
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
 | `software-testing` | [`best-practices`](plugins/software-testing/skills/best-practices/SKILL.md) | Writes tests that fail when behavior breaks: the right level, clear structure, isolation, and careful use of test doubles | The project's test runner |
+| | [`test-driven-development`](plugins/software-testing/skills/test-driven-development/SKILL.md) | Builds features and fixes bugs red-green-refactor, watching each test fail for the right reason first | The project's test runner |
 
 In the first three plugins, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits
 it; `authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type
-errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test.
+errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test and `test-driven-development` sets
+the order of work.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -131,6 +133,7 @@ would:
 | "CI's pyrefly step is red after my refactor" | `type-checking` |
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
 | "Add tests for the discount calculator" | `best-practices` |
+| "Implement the rate limiter, test-first" | `test-driven-development` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
 installed with the `skills` CLI are not, such as `/commit`.
@@ -168,7 +171,8 @@ plugins/
 │       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
 └── software-testing/
     └── skills/
-        └── best-practices/                 # Anti-pattern examples, test doubles in six languages
+        ├── best-practices/                 # Anti-pattern examples, test doubles in six languages
+        └── test-driven-development/
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:
