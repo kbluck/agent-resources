@@ -27,6 +27,7 @@ Each plugin bundles skills designed to work together.
 | | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
+| `python-testing` | [`pytest-writing`](plugins/python-testing/skills/pytest-writing/SKILL.md) | Writes idiomatic pytest tests: fixtures, parametrize, precise assertions, isolation from the real environment, async, and property-based tests | pytest |
 | `software-testing` | [`best-practices`](plugins/software-testing/skills/best-practices/SKILL.md) | Writes tests that fail when behavior breaks: the right level, clear structure, isolation, and careful use of test doubles | The project's test runner |
 | | [`test-driven-development`](plugins/software-testing/skills/test-driven-development/SKILL.md) | Builds features and fixes bugs red-green-refactor, watching each test fail for the right reason first | The project's test runner |
 | | [`condition-based-waiting`](plugins/software-testing/skills/condition-based-waiting/SKILL.md) | Fixes flaky tests by replacing sleeps with awaited results, signals, fake clocks, or polled conditions | |
@@ -34,9 +35,9 @@ Each plugin bundles skills designed to work together.
 
 In the first three plugins, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits
 it; `authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type
-errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test, `test-driven-development` sets the
-order of work, `condition-based-waiting` keeps async tests deterministic, and `defense-in-depth` guards dangerous paths once a bug
-is fixed.
+errors in code as it is annotated now. In `python-testing`, `pytest-writing` adds tests; it applies `software-testing` to pytest. In
+`software-testing`, `best-practices` shapes each test, `test-driven-development` sets the order of work, `condition-based-waiting`
+keeps async tests deterministic, and `defense-in-depth` guards dangerous paths once a bug is fixed.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -135,6 +136,7 @@ would:
 | "rumdl is failing on the docs folder" | `formatting` |
 | "CI's pyrefly step is red after my refactor" | `type-checking` |
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
+| "Write pytest tests for the config loader" | `pytest-writing` |
 | "Add tests for the discount calculator" | `best-practices` |
 | "Implement the rate limiter, test-first" | `test-driven-development` |
 | "This test passes locally but fails in CI about one run in ten" | `condition-based-waiting` |
@@ -175,6 +177,7 @@ plugins/
 │       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
 ├── python-testing/
 │   └── skills/
+│       └── pytest-writing/                 # Async and Hypothesis references
 └── software-testing/
     └── skills/
         ├── best-practices/                 # Anti-pattern examples, test doubles in six languages
