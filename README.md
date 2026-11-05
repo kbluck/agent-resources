@@ -29,11 +29,12 @@ Each plugin bundles skills designed to work together.
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
 | `software-testing` | [`best-practices`](plugins/software-testing/skills/best-practices/SKILL.md) | Writes tests that fail when behavior breaks: the right level, clear structure, isolation, and careful use of test doubles | The project's test runner |
 | | [`test-driven-development`](plugins/software-testing/skills/test-driven-development/SKILL.md) | Builds features and fixes bugs red-green-refactor, watching each test fail for the right reason first | The project's test runner |
+| | [`condition-based-waiting`](plugins/software-testing/skills/condition-based-waiting/SKILL.md) | Fixes flaky tests by replacing sleeps with awaited results, signals, fake clocks, or polled conditions | |
 
 In the first three plugins, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits
 it; `authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type
-errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test and `test-driven-development` sets
-the order of work.
+errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test, `test-driven-development` sets the
+order of work, and `condition-based-waiting` keeps async tests deterministic.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -134,6 +135,7 @@ would:
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
 | "Add tests for the discount calculator" | `best-practices` |
 | "Implement the rate limiter, test-first" | `test-driven-development` |
+| "This test passes locally but fails in CI about one run in ten" | `condition-based-waiting` |
 
 In Claude Code, you can also invoke one directly by name. Plugin skills are namespaced by plugin, such as `/git:commit`; skills
 installed with the `skills` CLI are not, such as `/commit`.
@@ -172,6 +174,7 @@ plugins/
 └── software-testing/
     └── skills/
         ├── best-practices/                 # Anti-pattern examples, test doubles in six languages
+        ├── condition-based-waiting/        # Framework wait helpers, fake clocks, polling helpers
         └── test-driven-development/
 ```
 
