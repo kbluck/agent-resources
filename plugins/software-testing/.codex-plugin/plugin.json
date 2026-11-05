@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/codex-plugin-manifest.json",
+  "name": "software-testing",
+  "version": "1.0.0",
+  "description": "Language-agnostic skills for testing software: test design, TDD, flaky tests, and defense in depth.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/software-testing",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "testing", "tdd", "flaky-tests", "defense-in-depth", "skills" ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "software-testing",
+    "shortDescription": "Language-agnostic skills for testing software: test design, TDD, flaky tests, and defense in depth.",
+    "developerName": "Kevin J. Bluck",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/kbluck/agent-resources/tree/main/plugins/software-testing"
+  }
+}

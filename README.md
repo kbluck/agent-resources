@@ -38,7 +38,7 @@ code as it is annotated now.
 ## Installation
 
 Every harness below installs from the same marketplace, `kbluck-agent-resources`. Add it once, then install the plugins you want by
-name. The examples install `git`; repeat the install for `markdown` and `pyrefly`.
+name. The examples install `git`; repeat the install for `markdown`, `pyrefly`, and `software-testing`.
 
 ### Claude Code
 
@@ -159,10 +159,12 @@ plugins/
 │   └── skills/
 │       ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
 │       └── formatting/    # Default rumdl.toml, rule notes, tool setup
-└── pyrefly/
+├── pyrefly/
+│   └── skills/
+│       ├── type-checking/ # Error-kind fixes, Pyrefly command and config reference, agent-loop hook
+│       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
+└── software-testing/
     └── skills/
-        ├── type-checking/ # Error-kind fixes, Pyrefly command and config reference, agent-loop hook
-        └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
 ```
 
 Restore the development skills, run the tests, validate the plugins, and lint the Markdown:

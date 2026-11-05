@@ -1,0 +1,5 @@
+{
+  "name": "software-testing",
+  "version": "1.0.0",
+  "description": "Language-agnostic skills for testing software: test design, TDD, flaky tests, and defense in depth."
+}

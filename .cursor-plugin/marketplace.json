@@ -2,7 +2,7 @@
   "name": "kbluck-agent-resources",
   "owner": { "name": "Kevin J. Bluck" },
   "metadata": {
-    "description": "Agent Resources plugins: git, markdown, and pyrefly.",
+    "description": "Agent Resources plugins: git, markdown, pyrefly, and software-testing.",
     "version": "1.0.0",
     "pluginRoot": "plugins"
   },
@@ -21,6 +21,11 @@
       "name": "pyrefly",
       "source": "pyrefly",
       "description": "Python type checking and type coverage with Pyrefly."
+    },
+    {
+      "name": "software-testing",
+      "source": "software-testing",
+      "description": "Language-agnostic skills for testing software: test design, TDD, flaky tests, and defense in depth."
     }
   ]
 }
