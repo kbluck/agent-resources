@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/codex-plugin-manifest.json",
+  "name": "python-testing",
+  "version": "1.1.0",
+  "description": "Python testing with pytest and Coverage.py: idiomatic tests, failure triage, and closing coverage gaps.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/python-testing",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "python", "pytest", "coverage", "pytest-cov", "testing", "skills" ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "python-testing",
+    "shortDescription": "Python testing with pytest and Coverage.py: idiomatic tests, failure triage, and closing coverage gaps.",
+    "developerName": "Kevin J. Bluck",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/kbluck/agent-resources/tree/main/plugins/python-testing"
+  }
+}

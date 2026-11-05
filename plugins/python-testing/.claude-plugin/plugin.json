@@ -1,0 +1,12 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "python-testing",
+  "displayName": "python-testing",
+  "version": "1.1.0",
+  "description": "Python testing with pytest and Coverage.py: idiomatic tests, failure triage, and closing coverage gaps.",
+  "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
+  "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/python-testing",
+  "repository": "https://github.com/kbluck/agent-resources",
+  "license": "MIT",
+  "keywords": [ "python", "pytest", "coverage", "pytest-cov", "testing", "skills" ]
+}

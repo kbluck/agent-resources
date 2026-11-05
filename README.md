@@ -45,7 +45,7 @@ is fixed.
 ## Installation
 
 Every harness below installs from the same marketplace, `kbluck-agent-resources`. Add it once, then install the plugins you want by
-name. The examples install `git`; repeat the install for `markdown`, `pyrefly`, and `software-testing`.
+name. The examples install `git`; repeat the install for `markdown`, `pyrefly`, `python-testing`, and `software-testing`.
 
 ### Claude Code
 
@@ -173,6 +173,8 @@ plugins/
 │   └── skills/
 │       ├── type-checking/ # Error-kind fixes, Pyrefly command and config reference, agent-loop hook
 │       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
+├── python-testing/
+│   └── skills/
 └── software-testing/
     └── skills/
         ├── best-practices/                 # Anti-pattern examples, test doubles in six languages
