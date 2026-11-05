@@ -30,11 +30,13 @@ Each plugin bundles skills designed to work together.
 | `software-testing` | [`best-practices`](plugins/software-testing/skills/best-practices/SKILL.md) | Writes tests that fail when behavior breaks: the right level, clear structure, isolation, and careful use of test doubles | The project's test runner |
 | | [`test-driven-development`](plugins/software-testing/skills/test-driven-development/SKILL.md) | Builds features and fixes bugs red-green-refactor, watching each test fail for the right reason first | The project's test runner |
 | | [`condition-based-waiting`](plugins/software-testing/skills/condition-based-waiting/SKILL.md) | Fixes flaky tests by replacing sleeps with awaited results, signals, fake clocks, or polled conditions | |
+| | [`defense-in-depth`](plugins/software-testing/skills/defense-in-depth/SKILL.md) | Adds checks at each layer bad data passed through, so the same class of bug cannot get far again | |
 
 In the first three plugins, one skill does the work and the other keeps it tidy: `branch` gets work off `main` and `commit` commits
 it; `authoring` shapes the document and `formatting` lints it; `type-coverage` adds annotations and `type-checking` fixes type
 errors in code as it is annotated now. In `software-testing`, `best-practices` shapes each test, `test-driven-development` sets the
-order of work, and `condition-based-waiting` keeps async tests deterministic.
+order of work, `condition-based-waiting` keeps async tests deterministic, and `defense-in-depth` guards dangerous paths once a bug
+is fixed.
 
 > [!NOTE]
 > Every skill defers to the repository it runs in. A contributing guide, `commitlint` config, or existing linter setup always wins
@@ -175,6 +177,7 @@ plugins/
     └── skills/
         ├── best-practices/                 # Anti-pattern examples, test doubles in six languages
         ├── condition-based-waiting/        # Framework wait helpers, fake clocks, polling helpers
+        ├── defense-in-depth/
         └── test-driven-development/
 ```
 
