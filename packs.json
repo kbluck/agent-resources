@@ -1,0 +1,6 @@
+{
+  "python-project-setup": [
+    "pytest-setup",
+    "coverage-py-setup"
+  ]
+}
