@@ -56,10 +56,10 @@ loads on its own like any other skill, and you can also run it as a command, suc
 | Skill | What it does | Pairs with | Requires |
 | :---- | :----------- | :--------- | :------- |
 | [`pytest-setup`](skills/pytest-setup/SKILL.md) | Configures [pytest](https://docs.pytest.org) in one strict `[tool.pytest]` table, with warnings as errors, the right plugins, and unittest migration | `python-testing` | pytest 9 (8 with fallbacks) |
-| [`coverage-config`](skills/coverage-config/SKILL.md) | Sets up [Coverage.py](https://coverage.readthedocs.io) with branch, subprocess, and xdist measurement, combines a CI matrix, and gates on the measured total | `python-testing` | Coverage.py 7.10+ |
+| [`coverage-py-setup`](skills/coverage-py-setup/SKILL.md) | Sets up [Coverage.py](https://coverage.readthedocs.io) with branch, subprocess, and xdist measurement, combines a CI matrix, and gates on the measured total | `python-testing` | Coverage.py 7.10+ |
 
 ```bash
-bunx skills add kbluck/agent-resources --skill pytest-setup --skill coverage-config
+bunx skills add kbluck/agent-resources --skill pytest-setup --skill coverage-py-setup
 ```
 
 ## Installation
@@ -142,6 +142,27 @@ Keep them current with `bunx skills update`.
 > The `skills` CLI records installed skills in `skills-lock.json`. Commit it, and teammates can restore the same set with
 > `bunx skills experimental_install`.
 
+### Skill Packs
+
+A skill pack installs a set of skills for one task, such as setting up a project, with one command from the `skills` CLI, and
+removes them again when the task is done. Packs are served from this repository's GitHub Pages site, so they need no account or
+service beyond GitHub. Skills that belong to a plugin are not in packs; install the plugin instead.
+
+| Pack | Skills |
+| :--- | :----- |
+| `python-project-setup` | `pytest-setup`, `coverage-py-setup` |
+
+```bash
+# Install a pack
+bunx skills add https://kbluck.github.io/agent-resources/packs/python-project-setup
+
+# Remove its skills when the task is done
+bunx skills remove pytest-setup coverage-py-setup
+```
+
+`bunx skills update` picks up changes to installed skills. A skill added to a pack later is not installed by `update`; it prints the
+command to install it, or run `skills add` for the pack again.
+
 ## Usage
 
 Skills load on their own when a request matches their description, so there is nothing to call explicitly. Ask the way you normally
@@ -158,7 +179,7 @@ would:
 | "Set up pytest for this project", or "move us off unittest" | `pytest-setup` |
 | "Write pytest tests for the config loader" | `pytest-writing` |
 | "This test passes alone but fails in the full suite" | `pytest-triage` |
-| "Add coverage to CI and fail the build if it drops" | `coverage-config` |
+| "Add coverage to CI and fail the build if it drops" | `coverage-py-setup` |
 | "Coverage is below the gate, get us over it" | `coverage-gaps` |
 | "Add tests for the discount calculator" | `best-practices` |
 | "Implement the rate limiter, test-first" | `test-driven-development` |
@@ -187,7 +208,7 @@ installed into `.agents/skills/`.
 
 ```text
 skills/
-├── coverage-config/                    # CI combine workflows for GitHub Actions, tox, and nox
+├── coverage-py-setup/                  # CI combine workflows for GitHub Actions, tox, and nox
 └── pytest-setup/
 plugins/
 ├── git/

@@ -12,6 +12,9 @@ before adding a plugin, changing a manifest, or adding hooks, MCP servers, or LS
 - Keep every manifest of a plugin in agreement: the same `name`, `version`, and `description` in all five, and an entry in all four
   marketplace files. Run `python3 -m unittest discover -s tests` and `claude plugin validate .` after any manifest change.
 - Bump `version` in all of a plugin's manifests when releasing a change, or Claude Code and Codex users will not receive it.
+- Skill packs group skills that are installed together for one task and removed afterwards, such as the setup skills. Do not add a
+  plugin's skills to a pack; they are installed with the plugin. Packs are listed in `packs.json` and in the README's pack table;
+  keep the two in agreement. Changes deploy to GitHub Pages from `main`.
 - Never create `plugins/<plugin>/hooks/hooks.json`. Claude Code, Codex, Cursor, and Gemini CLI all read that path, each with
   different event names.
 

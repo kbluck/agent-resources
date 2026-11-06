@@ -7,7 +7,7 @@ description: >
   with mutation testing. Use this skill whenever coverage is below a fail_under gate or a target, a pull request lowers coverage,
   the user asks to raise, improve, or reach some percentage of coverage, asks what is untested, or asks to add "# pragma: no cover"
   or exclusions, even if they only say "CI fails on coverage". Not for setting up or repairing coverage measurement itself (use
-  coverage-config) or the style of the tests you write (pytest-writing).
+  coverage-py-setup) or the style of the tests you write (pytest-writing).
 compatibility: >
   Written against Coverage.py 7.17.2. The bundled script needs only Python 3.10 or later and reads any Coverage.py JSON report,
   grouping gaps by function when the report includes function data.
@@ -33,7 +33,7 @@ decision for the user to make knowingly, not something to do quietly on their be
 
 ## Measure
 
-Run the tests the way the project measures coverage (see the coverage-config skill, if installed, when that is broken or unclear),
+Run the tests the way the project measures coverage (see the coverage-py-setup skill, if installed, when that is broken or unclear),
 then list the gaps with the bundled script, which groups them by file and function and shows the source of each:
 
 ```bash

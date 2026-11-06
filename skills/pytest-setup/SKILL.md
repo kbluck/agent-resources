@@ -8,7 +8,7 @@ description: >
   configuration (pytest.ini, pyproject.toml, tox.ini, setup.cfg, conftest.py layout), make the suite stricter or stop it hiding
   warnings, add a pytest plugin, or migrate from unittest or nose, even if they only say "clean up our test config". Not for
   writing test functions (use pytest-writing), diagnosing failing, flaky, or uncollected tests (pytest-triage), or coverage
-  settings (coverage-config).
+  settings (coverage-py-setup).
 compatibility: >
   Requires pytest 8.0 or later; written against pytest 9.2. Runs pytest the way the project runs it (uv, pip, tox, nox, hatch).
 license: MIT
@@ -98,7 +98,7 @@ them.
 
 | Do not put in `addopts` | Why | Put it here instead |
 | :---------------------- | :-- | :------------------ |
-| `--cov`, `--cov-report`, `--cov-fail-under` | Coverage tracing breaks debugger breakpoints, slows every run, makes a one-test run fail the coverage gate, and makes `coverage run -m pytest` report 0% | The CI or task-runner command; see the coverage-config skill |
+| `--cov`, `--cov-report`, `--cov-fail-under` | Coverage tracing breaks debugger breakpoints, slows every run, makes a one-test run fail the coverage gate, and makes `coverage run -m pytest` report 0% | The CI or task-runner command; see the coverage-py-setup skill |
 | `--disable-warnings`, `-p no:warnings`, `-W ignore` | Hides exactly what `filterwarnings = ["error"]` exists to surface | Narrow `ignore:` entries in `filterwarnings` |
 | `-n auto` (pytest-xdist) | Breaks `--pdb` and interleaves output; hides order bugs until the suite is isolated | CI command, or `addopts` only once the suite is known to be isolated |
 | `--showlocals` | Can print secrets into CI logs | Local runs |

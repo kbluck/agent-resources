@@ -13,6 +13,7 @@ component without breaking discovery anywhere.
 - [Adding a Plugin](#adding-a-plugin)
 - [Adding Hooks, MCP Servers, and LSP Servers](#adding-hooks-mcp-servers-and-lsp-servers)
 - [Versions](#versions)
+- [Skill Packs](#skill-packs)
 - [Checking Your Work](#checking-your-work)
 
 ## Repository Layout
@@ -34,7 +35,9 @@ component without breaking discovery anywhere.
 │           └── <skill>/SKILL.md       # Shared by every harness
 ├── skills/
 │   └── <skill>/SKILL.md               # Setup skill, in no plugin; installed with the skills CLI
-└── tests/test_manifests.py            # Keeps all of the above in agreement
+├── packs.json                         # Skill packs: pack name -> skill names
+├── scripts/build_packs.py             # Builds the skill pack site; .github/workflows/pages.yml deploys it
+└── tests/                             # test_manifests.py keeps the manifests in agreement; test_packs.py checks the packs
 ```
 
 The skills are the shared core. Every harness looks for `skills/<name>/SKILL.md` under the plugin root by default, so none of the
@@ -119,6 +122,35 @@ Every manifest sets the same `version`. Claude Code and Codex cache a plugin by 
 version is bumped. Bump it in all five manifests of the plugin, and in the `version` fields of the Copilot marketplace entries; the
 test fails if any of them disagree. The Claude Code marketplace entries omit `version`, because Claude Code warns when an entry
 repeats the one in `plugin.json`.
+
+## Skill Packs
+
+A skill pack is a named set of skills that the `skills` CLI installs with one command, from
+`https://kbluck.github.io/agent-resources/packs/<pack>`. Packs are defined in `packs.json` as pack name to skill names, and a skill
+can be in any number of packs. Packs are for skills used together for one task and removed afterwards, such as the setup skills;
+skills that belong to a plugin are installed with the plugin and stay out of packs.
+
+`scripts/build_packs.py` builds a static site in the [Agent Skills discovery](https://agentskills.io) format that the CLI reads:
+
+| Path | Contents |
+| :--- | :------- |
+| `skills/<skill>.tar.gz` | One archive per skill, with `SKILL.md` at its root, shared by every pack that lists the skill |
+| `packs/<pack>/.well-known/agent-skills/index.json` | The pack's skills, each with its description, archive URL, and SHA-256 digest |
+| `.well-known/agent-skills/index.json` | Every skill in the repository |
+
+The archives are reproducible: the same files always give the same bytes. Keep it that way, because installed copies report a
+changed digest as an update. The `Skill packs` workflow runs the tests, builds the site, and deploys it to GitHub Pages on every
+push to `main` that touches a skill, `packs.json`, or the build. To add or change a pack, edit `packs.json` and the pack table in
+the README; the tests check that they agree. To try the site locally:
+
+```bash
+python3 scripts/build_packs.py                                  # writes dist/site
+python3 -m http.server 8000 --directory dist/site &
+bunx skills add http://localhost:8000/packs/python-project-setup --list
+```
+
+The index lists each description cut to 1024 characters, because the CLI ignores longer entries. Installs read the description from
+`SKILL.md` itself.
 
 ## Checking Your Work
 

@@ -6,7 +6,7 @@ description: >
   and flaky failures, failures only under pytest-xdist or only in CI, and hung runs. Use this skill whenever a pytest run fails,
   errors, hangs, collects nothing or fewer tests than expected, or behaves differently between runs or machines, or the user
   pastes pytest output and asks what is wrong, even if they only say "CI is red", "the tests are flaky", or "works on my machine".
-  Not for writing new tests (use pytest-writing), configuring pytest (pytest-setup), coverage failures (coverage-config or
+  Not for writing new tests (use pytest-writing), configuring pytest (pytest-setup), coverage failures (coverage-py-setup or
   coverage-gaps), or replacing sleeps in timing-dependent tests (software-testing:condition-based-waiting).
 compatibility: >
   Requires pytest 8.0 or later; written against pytest 9.2. Uses the project's own test command.

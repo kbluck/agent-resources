@@ -1,5 +1,5 @@
 ---
-name: coverage-config
+name: coverage-py-setup
 description: >
   Set up, fix, or explain Coverage.py measurement for a Python project, with or without pytest-cov: branch coverage, source_pkgs,
   exclude_also, measuring subprocesses, multiprocessing, and pytest-xdist workers, combining data across a CI matrix or tox and nox
@@ -16,11 +16,11 @@ metadata:
   author: Kevin J Bluck <kbluck@users.noreply.github.com>
   copyright: Copyright © 2026 Kevin J. Bluck
   repository: https://github.com/kbluck/agent-resources
-  url: https://github.com/kbluck/agent-resources/tree/main/skills/coverage-config
-  version: 1.0.0
+  url: https://github.com/kbluck/agent-resources/tree/main/skills/coverage-py-setup
+  version: 1.0.1
 ---
 
-# Coverage Configuration
+# Coverage.py Setup
 
 Coverage measurement should be configured once, in `[tool.coverage]`, so that `pytest --cov`, `coverage run -m pytest`, a local run,
 and every CI job produce the same number from the same rules. Almost every "coverage is weird" report is two of those paths

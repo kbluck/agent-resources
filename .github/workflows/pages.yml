@@ -1,0 +1,49 @@
+# Builds the skill pack site from packs.json and deploys it to GitHub Pages.
+name: Skill packs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - packs.json
+      - README.md # its pack table is tested against packs.json
+      - plugins/*/skills/**
+      - skills/**
+      - scripts/build_packs.py
+      - tests/test_packs.py
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Test
+        run: python3 -m unittest discover -s tests
+      - name: Build
+        run: python3 scripts/build_packs.py dist/site
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/site
+          include-hidden-files: true # the indexes live under .well-known/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
