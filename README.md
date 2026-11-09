@@ -26,6 +26,7 @@ Each plugin bundles skills designed to work together.
 | | [`commit`](plugins/git/skills/commit/SKILL.md) | Inspects the diff, groups changes into right-sized commits, and writes [Conventional Commits](https://www.conventionalcommits.org) messages that explain why | Git |
 | `markdown` | [`authoring`](plugins/markdown/skills/authoring/SKILL.md) | Decides what each piece of a document becomes: table, GitHub alert, code block, Mermaid or ASCII diagram, or prose | |
 | | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
+| | [`rumdl-language-server`](plugins/markdown/skills/rumdl-language-server/SKILL.md) | Uses rumdl's language server to rename headings with their links, find what links to a file or section, and get exact anchors | rumdl, uv, Bun, or Node.js; Python 3 for the bundled client |
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
 | `python-testing` | [`pytest-writing`](plugins/python-testing/skills/pytest-writing/SKILL.md) | Writes idiomatic pytest tests: fixtures, parametrize, precise assertions, isolation from the real environment, async, and property-based tests | pytest |
@@ -218,7 +219,8 @@ plugins/
 ├── markdown/
 │   └── skills/
 │       ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
-│       └── formatting/    # Default rumdl.toml, rule notes, tool setup
+│       ├── formatting/    # Default rumdl.toml, rule notes, tool setup
+│       └── rumdl-language-server/ # rumdl_lsp.py client, server setup reference
 ├── pyrefly/
 │   └── skills/
 │       ├── type-checking/ # Error-kind fixes, Pyrefly command and config reference, agent-loop hook

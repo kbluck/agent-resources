@@ -15,7 +15,7 @@
     {
       "name": "markdown",
       "source": "./plugins/markdown",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Markdown documents that are easy to read and lint-clean."
     },
     {

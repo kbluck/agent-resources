@@ -37,7 +37,8 @@ component without breaking discovery anywhere.
 │   └── <skill>/SKILL.md               # Setup skill, in no plugin; installed with the skills CLI
 ├── packs.json                         # Skill packs: pack name -> skill names
 ├── scripts/build_packs.py             # Builds the skill pack site; .github/workflows/pages.yml deploys it
-└── tests/                             # test_manifests.py keeps the manifests in agreement; test_packs.py checks the packs
+└── tests/                             # test_manifests.py keeps the manifests in agreement; test_packs.py checks the packs;
+                                       # test_rumdl_lsp.py runs the markdown plugin's LSP client on fixtures/rumdl-lsp
 ```
 
 The skills are the shared core. Every harness looks for `skills/<name>/SKILL.md` under the plugin root by default, so none of the
@@ -93,9 +94,13 @@ a setup skill must not share a name with any plugin skill; the manifest test che
 
 ## Adding Hooks, MCP Servers, and LSP Servers
 
-No plugin ships hooks, MCP servers, or LSP servers yet. When one does, put the shared code (scripts, server binaries) in the plugin
-folder and point each harness at it in that harness's own format. Configuration formats differ enough that one shared file is
-usually wrong for at least one harness.
+The `markdown` plugin ships an LSP server (rumdl, through a launcher that picks `rumdl`, `uvx`, `bunx`, or `npx`); no plugin ships
+hooks or MCP servers yet. Put the shared code (scripts, server binaries) in the plugin folder and point each harness at it in that
+harness's own format. Configuration formats differ enough that one shared file is usually wrong for at least one harness. The
+manifest test checks that `.lsp.json` and `com.github.copilot/lsp.json` define the same servers with the same command, arguments,
+and extensions. Claude Code starts an LSP `command` from `PATH` with no shell and no per-platform setting, so a server that must
+choose at run time uses a launcher: `sh -c SCRIPT` in `.lsp.json`, the same script in Copilot's `bash` field, and a `powershell`
+twin for Windows.
 
 | Component | Claude Code | Copilot | Codex | Cursor | Gemini CLI |
 | :-------- | :---------- | :------ | :---- | :----- | :--------- |

@@ -1,0 +1,12 @@
+{
+  "lspServers": {
+    "rumdl": {
+      "bash": "if command -v rumdl >/dev/null 2>&1; then exec rumdl server; elif command -v uvx >/dev/null 2>&1; then exec uvx rumdl server; elif command -v bunx >/dev/null 2>&1; then exec bunx rumdl server; else exec npx --yes rumdl server; fi",
+      "powershell": "if (Get-Command rumdl -ErrorAction SilentlyContinue) { rumdl server } elseif (Get-Command uvx -ErrorAction SilentlyContinue) { uvx rumdl server } elseif (Get-Command bunx -ErrorAction SilentlyContinue) { bunx rumdl server } else { npx --yes rumdl server }",
+      "fileExtensions": {
+        ".md": "markdown",
+        ".markdown": "markdown"
+      }
+    }
+  }
+}
