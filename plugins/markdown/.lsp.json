@@ -1,0 +1,14 @@
+{
+  "rumdl": {
+    "command": "sh",
+    "args": [
+      "-c",
+      "if command -v rumdl >/dev/null 2>&1; then exec rumdl server; elif command -v uvx >/dev/null 2>&1; then exec uvx rumdl server; elif command -v bunx >/dev/null 2>&1; then exec bunx rumdl server; else exec npx --yes rumdl server; fi"
+    ],
+    "extensionToLanguage": {
+      ".md": "markdown",
+      ".markdown": "markdown"
+    },
+    "startupTimeout": 120000
+  }
+}

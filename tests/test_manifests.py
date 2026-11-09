@@ -134,6 +134,33 @@ class PluginManifestTests(unittest.TestCase):
                 }
                 self.assertEqual(len({frozenset(n) for n in names.values()}), 1, f"{plugin.name}: {names}")
 
+    def test_lsp_servers_agree_across_harness_files(self):
+        # Claude Code reads .lsp.json (extensionToLanguage); Copilot CLI reads com.github.copilot/lsp.json (fileExtensions).
+        for plugin in plugin_dirs():
+            with self.subTest(plugin=plugin.name):
+                claude, copilot = plugin / ".lsp.json", plugin / "com.github.copilot" / "lsp.json"
+                if not (claude.exists() or copilot.exists()):
+                    continue
+                self.assertTrue(claude.is_file() and copilot.is_file(),
+                                f"{plugin.name}: need both .lsp.json and com.github.copilot/lsp.json")
+                # A server may be a plain command, or a launcher script: `sh -c SCRIPT` for Claude Code, which has no
+                # shell option, and the same SCRIPT in Copilot's `bash` field (its `powershell` field covers Windows).
+                def claude_launch(s):
+                    args = s.get("args", [])
+                    return ("script", args[1]) if s["command"] == "sh" and args[:1] == ["-c"] else (s["command"], args)
+
+                def copilot_launch(s):
+                    if "bash" in s:
+                        self.assertIn("powershell", s, f"{plugin.name}: a bash launcher needs a powershell twin for Windows")
+                        return ("script", s["bash"])
+                    return (s["command"], s.get("args", []))
+
+                claude_servers = {name: (claude_launch(s), s["extensionToLanguage"]) for name, s in load(claude).items()}
+                copilot_servers = {
+                    name: (copilot_launch(s), s["fileExtensions"]) for name, s in load(copilot)["lspServers"].items()
+                }
+                self.assertEqual(claude_servers, copilot_servers)
+
     def test_no_shared_hooks_file(self):
         # Claude Code, Codex, Cursor, and Gemini CLI all read hooks/hooks.json with different event names.
         for plugin in plugin_dirs():
