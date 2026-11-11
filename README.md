@@ -29,6 +29,7 @@ Each plugin bundles skills designed to work together.
 | | [`rumdl-language-server`](plugins/markdown/skills/rumdl-language-server/SKILL.md) | Uses rumdl's language server to rename headings with their links, find what links to a file or section, and get exact anchors | rumdl, uv, Bun, or Node.js; Python 3 for the bundled client |
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
+| | [`language-server`](plugins/pyrefly/skills/language-server/SKILL.md) | Uses Pyrefly's language server to find definitions, references, callers, and subclasses by type, and to rename symbols, move modules, and refactor with every import updated | Pyrefly, uv, or pipx; Python 3 for the bundled client |
 | `python-testing` | [`pytest-writing`](plugins/python-testing/skills/pytest-writing/SKILL.md) | Writes idiomatic pytest tests: fixtures, parametrize, precise assertions, isolation from the real environment, async, and property-based tests | pytest |
 | | [`pytest-triage`](plugins/python-testing/skills/pytest-triage/SKILL.md) | Finds why tests fail, error, hang, flake, depend on order, or are not collected, and fixes the cause instead of the symptom | pytest |
 | | [`coverage-gaps`](plugins/python-testing/skills/coverage-gaps/SKILL.md) | Closes coverage gaps with tests that check behavior, excludes only code that cannot run, and lists gaps with a bundled script | Coverage.py; Python 3.10+ for the script |
@@ -177,6 +178,7 @@ would:
 | "rumdl is failing on the docs folder" | `formatting` |
 | "CI's pyrefly step is red after my refactor" | `type-checking` |
 | "Get `src/billing/invoice.py` fully typed with pyrefly" | `type-coverage` |
+| "Rename `Order.total` to `subtotal` everywhere", or "what calls `charge_card`?" | `language-server` |
 | "Set up pytest for this project", or "move us off unittest" | `pytest-setup` |
 | "Write pytest tests for the config loader" | `pytest-writing` |
 | "This test passes alone but fails in the full suite" | `pytest-triage` |
@@ -223,6 +225,7 @@ plugins/
 │       └── rumdl-language-server/ # rumdl_lsp.py client, server setup reference
 ├── pyrefly/
 │   └── skills/
+│       ├── language-server/ # pyrefly_lsp.py client, server setup reference
 │       ├── type-checking/ # Error-kind fixes, Pyrefly command and config reference, agent-loop hook
 │       └── type-coverage/ # Annotation guide and Pyrefly command, config, and error-kind reference
 ├── python-testing/

@@ -1,0 +1,14 @@
+{
+  "pyrefly": {
+    "command": "sh",
+    "args": [
+      "-c",
+      "if [ -x .venv/bin/pyrefly ]; then exec .venv/bin/pyrefly lsp; elif command -v pyrefly >/dev/null 2>&1; then exec pyrefly lsp; elif command -v uvx >/dev/null 2>&1; then exec uvx pyrefly lsp; else exec pipx run pyrefly lsp; fi"
+    ],
+    "extensionToLanguage": {
+      ".py": "python",
+      ".pyi": "python"
+    },
+    "startupTimeout": 120000
+  }
+}

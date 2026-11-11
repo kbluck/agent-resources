@@ -1,0 +1,12 @@
+{
+  "lspServers": {
+    "pyrefly": {
+      "bash": "if [ -x .venv/bin/pyrefly ]; then exec .venv/bin/pyrefly lsp; elif command -v pyrefly >/dev/null 2>&1; then exec pyrefly lsp; elif command -v uvx >/dev/null 2>&1; then exec uvx pyrefly lsp; else exec pipx run pyrefly lsp; fi",
+      "powershell": "if (Test-Path .venv\\Scripts\\pyrefly.exe) { .venv\\Scripts\\pyrefly.exe lsp } elseif (Get-Command pyrefly -ErrorAction SilentlyContinue) { pyrefly lsp } elseif (Get-Command uvx -ErrorAction SilentlyContinue) { uvx pyrefly lsp } else { pipx run pyrefly lsp }",
+      "fileExtensions": {
+        ".py": "python",
+        ".pyi": "python"
+      }
+    }
+  }
+}

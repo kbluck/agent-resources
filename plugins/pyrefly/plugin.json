@@ -1,18 +1,18 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "pyrefly",
-  "version": "1.1.0",
-  "description": "Python type checking and type coverage with Pyrefly.",
+  "version": "1.2.0",
+  "description": "Python type checking, type coverage, and code navigation and refactoring with Pyrefly's language server.",
   "author": { "name": "Kevin J. Bluck", "url": "https://github.com/kbluck" },
   "homepage": "https://github.com/kbluck/agent-resources/tree/main/plugins/pyrefly",
   "repository": "https://github.com/kbluck/agent-resources",
   "license": "MIT",
-  "keywords": [ "python", "pyrefly", "type-checking", "skills" ],
+  "keywords": [ "python", "pyrefly", "type-checking", "lsp", "refactoring", "skills" ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "pyrefly",
-        "shortDescription": "Python type checking and type coverage with Pyrefly.",
+        "shortDescription": "Python type checking, type coverage, and code navigation and refactoring with Pyrefly's language server.",
         "developerName": "Kevin J. Bluck",
         "category": "Developer Tools",
         "websiteURL": "https://github.com/kbluck/agent-resources/tree/main/plugins/pyrefly"
