@@ -19,7 +19,7 @@
     {
       "name": "pyrefly",
       "source": "./plugins/pyrefly",
-      "description": "Python type checking and type coverage with Pyrefly."
+      "description": "Python type checking, type coverage, and code navigation and refactoring with Pyrefly's language server."
     },
     {
       "name": "python-testing",
