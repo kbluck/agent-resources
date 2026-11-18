@@ -15,7 +15,7 @@ metadata:
   copyright: Copyright © 2026 Kevin J. Bluck
   repository: https://github.com/kbluck/agent-resources
   url: https://github.com/kbluck/agent-resources/tree/main/plugins/markdown/skills/authoring
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Markdown Authoring
@@ -42,6 +42,8 @@ This skill and the `formatting` skill split the job:
 Work in that order. Decide the structure with this skill, write the document, then apply `formatting` in authoring mode to the files
 you touched, so the result passes the project's Markdown linter (or rumdl with markdownlint defaults when the project has none).
 Structure first, because choosing a table instead of a list changes what there is to format; formatting first would be redone.
+
+Spell the prose in the project's variety of English, American or British; the `english-spelling` skill decides which.
 
 For any syntax or lint question, follow `formatting`, not this skill. If `formatting` is not installed, still write to rumdl's
 default rules and run the project's Markdown linter if it has one.

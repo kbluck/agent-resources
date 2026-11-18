@@ -27,6 +27,7 @@ Each plugin bundles skills designed to work together.
 | `markdown` | [`authoring`](plugins/markdown/skills/authoring/SKILL.md) | Decides what each piece of a document becomes: table, GitHub alert, code block, Mermaid or ASCII diagram, or prose | |
 | | [`formatting`](plugins/markdown/skills/formatting/SKILL.md) | Lints and fixes Markdown syntax with the project's own tool, falling back to [rumdl](https://github.com/rvben/rumdl) | uv, pipx, or Node.js to run rumdl |
 | | [`rumdl-language-server`](plugins/markdown/skills/rumdl-language-server/SKILL.md) | Uses rumdl's language server to rename headings with their links, find what links to a file or section, and get exact anchors | rumdl, uv, Bun, or Node.js; Python 3 for the bundled client |
+| | [`english-spelling`](plugins/markdown/skills/english-spelling/SKILL.md) | Finds whether a project spells in American or British English, writes Markdown and code comments to match, standardizes text that strays, and checks spelling through a connected IDE | |
 | `pyrefly` | [`type-checking`](plugins/pyrefly/skills/type-checking/SKILL.md) | Runs [Pyrefly](https://pyrefly.org) on existing code, separates environment problems from real type errors, and fixes each error where the bug is | Pyrefly |
 | | [`type-coverage`](plugins/pyrefly/skills/type-coverage/SKILL.md) | Brings a Python file or package to full annotation coverage under [Pyrefly](https://pyrefly.org) and locks it in with a stricter sub-config | Pyrefly |
 | | [`language-server`](plugins/pyrefly/skills/language-server/SKILL.md) | Uses Pyrefly's language server to find definitions, references, callers, and subclasses by type, and to rename symbols, move modules, and refactor with every import updated | Pyrefly, uv, or pipx; Python 3 for the bundled client |
@@ -221,6 +222,7 @@ plugins/
 ├── markdown/
 │   └── skills/
 │       ├── authoring/     # Before/after rewrites for tables, alerts, code, diagrams
+│       ├── english-spelling/ # American and British word lists, IDE spelling-check setup
 │       ├── formatting/    # Default rumdl.toml, rule notes, tool setup
 │       └── rumdl-language-server/ # rumdl_lsp.py client, server setup reference
 ├── pyrefly/
